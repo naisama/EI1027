@@ -1,9 +1,13 @@
 package es.uji.ei1027.clubesportiu;
 
+import es.uji.ei1027.clubesportiu.categoria.Categoria;
+import es.uji.ei1027.clubesportiu.categoria.CategoriaFederacio;
+import es.uji.ei1027.clubesportiu.categoria.CategoriaWorldCup;
 import org.springframework.boot.jdbc.DataSourceBuilder;
 import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.Primary;
 
 import javax.sql.DataSource;
 
@@ -18,4 +22,20 @@ public class ClubesportiuConfiguration {
     public DataSource dataSource() {
         return DataSourceBuilder.create().build();
     }
+
+   /* @Bean
+    @Primary
+    public Categoria categoriaF(){                    // Convenció de tipus
+        return new CategoriaFederacio();
+    }
+
+    @Bean
+    public Categoria categoriaWC(){
+        return new CategoriaWorldCup();
+    }*/
+   @Bean
+   public Categoria categoria(){        // Convenció de nom
+       return new CategoriaFederacio();
+   }
+
 }

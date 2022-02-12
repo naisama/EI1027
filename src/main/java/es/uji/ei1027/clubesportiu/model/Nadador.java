@@ -1,4 +1,4 @@
-package es.uji.ei1027.clubesportiu;
+package es.uji.ei1027.clubesportiu.model;
 
 public class Nadador {
     private String nom;

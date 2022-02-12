@@ -11,32 +11,15 @@ import org.springframework.jdbc.core.JdbcTemplate;
 import javax.sql.DataSource;
 
 @SpringBootApplication
-public class ClubesportiuApplication implements CommandLineRunner {
+public class ClubesportiuApplication{
 
-	private static final Logger log = Logger.getLogger(ClubesportiuApplication .class.getName());
+	private static final Logger log = Logger.getLogger(ClubesportiuApplication.class.getName());
 
 	public static void main(String[] args) {
 		// Auto-configura l'aplicació
 		new SpringApplicationBuilder(ClubesportiuApplication.class).run(args);
 	}
 
-	// Funció principal
-	public void run(String... strings) throws Exception {
-		log.info("Selecciona la nadadora Gemma Mengual");
-		Nadador n1 = jdbcTemplate.queryForObject(
-				"SELECT * FROM Nadador WHERE nom = 'Gemma Mengual'",
-				new NadadorRowMapper());
-		log.info(n1.toString());
-	}
-
-	// Plantilla per a executar operacions sobre la connexió
-	private JdbcTemplate jdbcTemplate;
-
-	// Crea el jdbcTemplate a partir del DataSource que hem configurat
-	@Autowired
-	public void setDataSource(DataSource dataSource) {
-		jdbcTemplate = new JdbcTemplate(dataSource);
-	}
 
 }
 

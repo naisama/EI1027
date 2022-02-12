@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Gestionar Proves</title>
+    <meta charset="UTF-8" />
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" />
+</head>
+<body>
+<h1>Llista de Proves</h1>
+<table class="table table-striped">
+    <thead>
+    <tr>
+        <th>Nom</th>
+        <th>Descripcio</th>
+        <th>Tipus</th>
+        <th>Data</th>
+        <th></th>
+        <th></th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="prova: ${proves}">
+        <td th:text="${prova.nom}"></td>
+        <td th:text="${prova.descrip}"></td>
+        <td th:text="${prova.tipus}"></td>
+        <td th:text="${prova.data}"></td>
+        <td><a th:href="@{/prova/update/{nom}(nom=${prova.nom})}" class="btn btn-warning btn-sm" role="button">Edita</a> </td>
+        <td><a th:href="@{/prova/delete/{nom}(nom=${prova.nom})}" class="btn btn-danger btn-sm" role="button">Esborra</a> </td>
+    </tr>
+    </tbody>
+</table>
+<a href="add" class="btn btn-success btn-lg active" role="button" aria-pressed="true">Afegeix prova</a>
+</body>
+</html>

@@ -1,5 +1,6 @@
-package es.uji.ei1027.clubesportiu;
+package es.uji.ei1027.clubesportiu.dao;
 
+import es.uji.ei1027.clubesportiu.model.Nadador;
 import org.springframework.jdbc.core.RowMapper;
 
 import java.sql.ResultSet;
