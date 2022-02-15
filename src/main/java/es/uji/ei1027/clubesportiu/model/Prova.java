@@ -46,7 +46,7 @@ public class Prova {
 
     @Override
     public String toString() {
-        return "Nadador{" +
+        return "Prova{" +
                 "nom='" + nom + "\'" +
                 ", descripción='" + descrip + "\'" +
                 ", tipus='" + tipus + "\'" +
