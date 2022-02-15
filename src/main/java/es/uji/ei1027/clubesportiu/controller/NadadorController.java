@@ -32,5 +32,44 @@ public class NadadorController {
         return "nadador/list";
 }
 
+    @RequestMapping(value="/add")
+    public String addNadador(Model model) {
+        model.addAttribute("nadador", new Nadador());
+        return "nadador/add";
+    }
+
+    @RequestMapping(value="/add", method=RequestMethod.POST)
+    public String processAddSubmit(@ModelAttribute("nadador") Nadador nadador,
+                                   BindingResult bindingResult) {
+        if (bindingResult.hasErrors())
+        return "nadador/add";
+        nadadorDao.addNadador(nadador);
+        return "redirect:list";
+    }
+
+    @RequestMapping(value="/update/{nom}", method = RequestMethod.GET)
+    public String editNadador(Model model, @PathVariable String nom) {
+        model.addAttribute("nadador", nadadorDao.getNadador(nom));
+        return "nadador/update";
+    }
+
+    @RequestMapping(value="/update", method = RequestMethod.POST)
+    public String processUpdateSubmit(
+            @ModelAttribute("nadador") Nadador nadador,
+            BindingResult bindingResult) {
+        if (bindingResult.hasErrors())
+            return "nadador/update";
+        nadadorDao.updateNadador(nadador);
+        return "redirect:list";
+    }
+
+    @RequestMapping(value="/delete/{nom}")
+    public String processDelete(@PathVariable String nom) {
+        nadadorDao.deleteNadador(nom);
+        return "redirect:../list";
+    }
+
+
+
 
 }
