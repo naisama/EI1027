@@ -5,6 +5,7 @@ import es.uji.ei1027.clubesportiu.dao.ClassificacioDao;
 import es.uji.ei1027.clubesportiu.dao.NadadorDao;
 import es.uji.ei1027.clubesportiu.model.Classificacio;
 import es.uji.ei1027.clubesportiu.model.Nadador;
+import es.uji.ei1027.clubesportiu.services.ClassificacioService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -18,7 +19,26 @@ import org.springframework.web.bind.annotation.RequestMethod;
 @RequestMapping("/classificacio")
 public class ClassificacioController {
 
-    private ClassificacioDao classificacioDao;
+    private ClassificacioService classificacioService;
+
+    @Autowired
+    public void setClassificacioService(ClassificacioService classificacioService) {
+        this.classificacioService = classificacioService;
+    }
+
+
+    @RequestMapping("/perpais")
+    public String listClsfPerPais(Model model) {
+        model.addAttribute("classificacions",
+                classificacioService.getClassificationByCountry("Duos Sincro"));
+        return "classificacio/perpais";
+    }
+
+
+
+}
+
+   /* private ClassificacioDao classificacioDao;
 
     @Autowired
     public void setNadadorDao(ClassificacioDao classificacioDao) {
@@ -71,4 +91,4 @@ public class ClassificacioController {
         return "redirect:../../list";
     }
 
-}
+}*/
