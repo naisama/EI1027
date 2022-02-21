@@ -39,7 +39,7 @@ public class ClassificacioSvc implements ClassificacioService {
     }
 
     @Override
-    public Map<String, List<Nadador>> getNadadorsByCountry(String pais) {  // TODO: 19/02/2022
+    public Map<String, List<Nadador>> getNadadorsByCountry(String pais) {
         List<Nadador> classProva =
                 nadadorDao.getNadadorsPais(pais);
         HashMap<String,List<Nadador>> nadadorsPerProva =
