@@ -24,6 +24,7 @@
         <td th:text="${prova.descrip}"></td>
         <td th:text="${prova.tipus}"></td>
         <td th:text="${prova.data}"></td>
+        <td><a th:href="@{/classificacio/perpais/{nom}(nom=${prova.nom})}" class="btn btn-info btn-sm" role="button">Per Pais</a> </td>
         <td><a th:href="@{/prova/update/{nom}(nom=${prova.nom})}" class="btn btn-warning btn-sm" role="button">Edita</a> </td>
         <td><a th:href="@{/prova/delete/{nom}(nom=${prova.nom})}" class="btn btn-danger btn-sm" role="button">Esborra</a> </td>
     </tr>

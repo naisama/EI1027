@@ -59,10 +59,22 @@ public class NadadorDao {
         }
     }
 
+
     /* Obté tots els nadadors. Torna una llista buida si no n'hi ha cap. */
     public List<Nadador> getNadadors() {
         try {
             return jdbcTemplate.query("SELECT * FROM Nadador", new NadadorRowMapper());
+        }
+        catch(EmptyResultDataAccessException e) {
+            return new ArrayList<Nadador>();
+        }
+    }
+
+    /* Obtiene lista de los nadadores de un pais. */
+    public List<Nadador> getNadadorsPais(String pais) {
+        try {
+            return jdbcTemplate.query("SELECT * FROM Nadador WHERE pais=?",
+                    new NadadorRowMapper(), pais);
         }
         catch(EmptyResultDataAccessException e) {
             return new ArrayList<Nadador>();

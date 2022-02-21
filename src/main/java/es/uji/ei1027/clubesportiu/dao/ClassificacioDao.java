@@ -1,6 +1,7 @@
 package es.uji.ei1027.clubesportiu.dao;
 
 import es.uji.ei1027.clubesportiu.model.Classificacio;
+import es.uji.ei1027.clubesportiu.model.Nadador;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.jdbc.core.JdbcTemplate;
@@ -64,6 +65,19 @@ public class ClassificacioDao {
             return new ArrayList<Classificacio>();
         }
     }
+
+    public List<Classificacio> getClassificacioNadador(String nomNadador) {
+        try {
+            return this.jdbcTemplate.query(
+                    "SELECT * FROM classificacio WHERE nom_nadador=?",
+                    new ClassificacioRowMapper(), nomNadador);
+        }
+        catch(EmptyResultDataAccessException e) {
+            return new ArrayList<Classificacio>();
+        }
+    }
+
+
 
 
     /* Obté totes les classificacions. Torna una llista buida si no n'hi ha cap. */

@@ -19,26 +19,8 @@ import org.springframework.web.bind.annotation.RequestMethod;
 @RequestMapping("/classificacio")
 public class ClassificacioController {
 
-    private ClassificacioService classificacioService;
 
-    @Autowired
-    public void setClassificacioService(ClassificacioService classificacioService) {
-        this.classificacioService = classificacioService;
-    }
-
-
-    @RequestMapping("/perpais")
-    public String listClsfPerPais(Model model) {
-        model.addAttribute("classificacions",
-                classificacioService.getClassificationByCountry("Duos Sincro"));
-        return "classificacio/perpais";
-    }
-
-
-
-}
-
-   /* private ClassificacioDao classificacioDao;
+   private ClassificacioDao classificacioDao;
 
     @Autowired
     public void setNadadorDao(ClassificacioDao classificacioDao) {
@@ -91,4 +73,29 @@ public class ClassificacioController {
         return "redirect:../../list";
     }
 
-}*/
+    /*SERVEI*/
+    private ClassificacioService classificacioService;
+
+    @Autowired
+    public void setClassificacioService(ClassificacioService classificacioService) {
+        this.classificacioService = classificacioService;
+    }
+
+
+    @RequestMapping(value = "/perpais/{nomProva}" ,method = RequestMethod.GET)
+    public String listClsfPerPais(Model model, @PathVariable String nomProva) {
+        model.addAttribute("classificacions",
+                classificacioService.getClassificationByCountry(nomProva));
+        return "classificacio/perpais";
+    }
+
+    @RequestMapping(value = "/perprova/{nomPais}" ,method = RequestMethod.GET)
+    public String listClsfPerProva(Model model, @PathVariable String nomPais) {
+        model.addAttribute("classificacions",
+                classificacioService.getNadadorsByCountry(nomPais));
+        return "classificacio/perprova";
+    }
+
+}
+
+

@@ -37,6 +37,26 @@ public class ClassificacioSvc implements ClassificacioService {
         }
         return nadadorsPerPais;
     }
+
+    @Override
+    public Map<String, List<Nadador>> getNadadorsByCountry(String pais) {  // TODO: 19/02/2022
+        List<Nadador> classProva =
+                nadadorDao.getNadadorsPais(pais);
+        HashMap<String,List<Nadador>> nadadorsPerProva =
+                new HashMap<String,List<Nadador>>();
+        for (Nadador nd: classProva) {
+            //Para cada prueba añadir nadador
+            List<Classificacio> clsf = classificacioDao.getClassificacioNadador(nd.getNom());
+            for ( Classificacio cl: clsf){
+                if(!nadadorsPerProva.containsKey(cl.getNomProva()))
+                    nadadorsPerProva.put(cl.getNomProva(),
+                            new ArrayList<Nadador>());
+                nadadorsPerProva.get(cl.getNomProva()).add(nd);
+            }
+
+        }
+        return nadadorsPerProva;
+    }
 }
 
 
