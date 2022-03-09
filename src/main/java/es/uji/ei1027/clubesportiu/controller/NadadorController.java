@@ -41,8 +41,10 @@ public class NadadorController {
     @RequestMapping(value="/add", method=RequestMethod.POST)
     public String processAddSubmit(@ModelAttribute("nadador") Nadador nadador,
                                    BindingResult bindingResult) {
+        NadadorValidator nadadorValidator = new NadadorValidator();
+        nadadorValidator.validate(nadador, bindingResult);
         if (bindingResult.hasErrors())
-        return "nadador/add";
+            return "nadador/add";
         nadadorDao.addNadador(nadador);
         return "redirect:list";
     }

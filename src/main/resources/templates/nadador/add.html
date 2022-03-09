@@ -14,6 +14,7 @@
         <tr>
             <td><label>Nom</label></td>
             <td><input type="text" th:field="*{nom}" /></td>
+            <td th:if="${#fields.hasErrors('nom')}" th:errors="*{nom}"></td>
         </tr>
         <tr>
             <td><label>Num. Federat</label></td>
@@ -26,6 +27,7 @@
         <tr>
             <td><label>Edat</label></td>
             <td><input type="number" th:field="*{edat}" /></td>
+            <td th:if="${#fields.hasErrors('edat')}" th:errors="*{edat}"></td>
         </tr>
         <tr>
             <td><label>Genere</label></td>
