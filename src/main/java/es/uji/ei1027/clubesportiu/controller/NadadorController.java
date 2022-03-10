@@ -52,11 +52,14 @@ public class NadadorController {
         return "redirect:list";
     }
 
+    @ModelAttribute("genderList")
+    public List<String> genderList() {
+        return Arrays.asList("Femení", "Masculí");
+    }
+
     @RequestMapping(value="/update/{nom}", method = RequestMethod.GET)
     public String editNadador(Model model, @PathVariable String nom) {
         model.addAttribute("nadador", nadadorDao.getNadador(nom));
-        List<String> genderList = Arrays.asList("Femení", "Masculí");
-        model.addAttribute("genderList", genderList);
         return "nadador/update";
     }
 
@@ -66,7 +69,7 @@ public class NadadorController {
         NadadorValidator nadadorValidator = new NadadorValidator();
         nadadorValidator.validate(nadador, bindingResult);
         if (bindingResult.hasErrors()) {
-            return "redirect:../nadador/update/" + nadador.getNom();
+            return "nadador/update";
         }
         nadadorDao.updateNadador(nadador);
         return "redirect:list";
