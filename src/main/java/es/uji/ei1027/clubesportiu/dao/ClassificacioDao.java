@@ -78,8 +78,6 @@ public class ClassificacioDao {
     }
 
 
-
-
     /* Obté totes les classificacions. Torna una llista buida si no n'hi ha cap. */
     public List<Classificacio> getClassificacions() {
         try {
@@ -89,5 +87,6 @@ public class ClassificacioDao {
             return new ArrayList<Classificacio>();
         }
     }
+
 
 }

@@ -24,7 +24,7 @@ public class ProvaDao {
     /* Afegeix prova a la base de dades */
     public void addProva(Prova prova) {
         jdbcTemplate.update("INSERT INTO Prova VALUES(?, ?, ?, ?)",
-                prova.getNom(), prova.getDescrip(), prova.getTipus(), prova.getData());
+                prova.getNom(), prova.getDescripcio(), prova.getTipus(), prova.getData());
     }
 
     /* Esborra prova de la base de dades */
@@ -35,7 +35,7 @@ public class ProvaDao {
     /* Actualitza els atributs de prova
        (excepte el nom, que és la clau primària) */
     public void updateProva(Prova prova) {
-        jdbcTemplate.update("UPDATE Prova SET descripcio = '" + prova.getDescrip() +
+        jdbcTemplate.update("UPDATE Prova SET descripcio = '" + prova.getDescripcio() +
                 "', tipus = " + prova.getTipus() +
                 ",data = " + prova.getData()+
                 "WHERE nom ='" + prova.getNom()+"'");
@@ -61,4 +61,10 @@ public class ProvaDao {
             return new ArrayList<Prova>();
         }
     }
+
+    public void deleteProva(String nom) {
+
+        jdbcTemplate.update("DELETE FROM Prova WHERE nom = '" + nom + "'");
+    }
+
 }

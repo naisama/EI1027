@@ -1,11 +1,14 @@
 package es.uji.ei1027.clubesportiu.model;
 
+import org.springframework.format.annotation.DateTimeFormat;
+
 import java.time.LocalDate;
 
 public class Prova {
     private String nom;
-    private String descrip;
+    private String descripcio;
     private String tipus;
+    @DateTimeFormat(iso=DateTimeFormat.ISO.DATE)
     private LocalDate data;
 
 
@@ -20,12 +23,12 @@ public class Prova {
         this.nom = nom;
     }
 
-    public String getDescrip() {
-        return descrip;
+    public String getDescripcio() {
+        return descripcio;
     }
 
-    public void setDescrip(String descrip) {
-        this.descrip = descrip;
+    public void setDescripcio(String descripcio) {
+        this.descripcio = descripcio;
     }
 
     public String getTipus() {
@@ -48,7 +51,7 @@ public class Prova {
     public String toString() {
         return "Prova{" +
                 "nom='" + nom + "\'" +
-                ", descripción='" + descrip + "\'" +
+                ", descripción='" + descripcio + "\'" +
                 ", tipus='" + tipus + "\'" +
                 ", data=" + data +
                 "}";

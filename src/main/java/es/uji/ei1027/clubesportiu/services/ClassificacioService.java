@@ -8,5 +8,7 @@ public interface ClassificacioService {
     public Map<String, List<Nadador>> getClassificationByCountry(String prova);
 
     public Map<String, List<Nadador>> getNadadorsByCountry(String pais);
+
+    List<String> getNadadorsElegiblesPerProva(String prova);
 }
 

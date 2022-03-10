@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
+<html xmlns:th="http://www.thymeleaf.org">v
 <head>
     <title>Gestionar Proves</title>
     <meta charset="UTF-8" />
@@ -7,7 +7,7 @@
 </head>
 <body>
 <h1>Llista de Proves</h1>
-<table class="table table-striped">
+<table class="table table-striped">w
     <thead>
     <tr>
         <th>Nom</th>
@@ -21,12 +21,16 @@
     <tbody>
     <tr th:each="prova: ${proves}">
         <td th:text="${prova.nom}"></td>
-        <td th:text="${prova.descrip}"></td>
+        <td th:text="${prova.descripcio}"></td>
         <td th:text="${prova.tipus}"></td>
-        <td th:text="${prova.data}"></td>
+        <td th:text="${prova.data}?${#temporals?.format(prova.data,'dd MMMM yyyy')}"></td>
+        <td><a th:href="@{/classificacio/addPerProva/{nom}(nom=${prova.nom})}">Gestionar classificacions</a>
+        <td th:text="${#temporals.format(prova.data,'dd/MM/yyyy')}"></td>
         <td><a th:href="@{/classificacio/perpais/{nom}(nom=${prova.nom})}" class="btn btn-info btn-sm" role="button">Per Pais</a> </td>
         <td><a th:href="@{/prova/update/{nom}(nom=${prova.nom})}" class="btn btn-warning btn-sm" role="button">Edita</a> </td>
         <td><a th:href="@{/prova/delete/{nom}(nom=${prova.nom})}" class="btn btn-danger btn-sm" role="button">Esborra</a> </td>
+
+
     </tr>
     </tbody>
 </table>

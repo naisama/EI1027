@@ -1,6 +1,6 @@
 package es.uji.ei1027.clubesportiu.model;
 
-public class Nadador {
+public class Nadador implements Comparable<Nadador> {
     private String nom;
     private String numFederat;
     private String pais;
@@ -48,6 +48,9 @@ public class Nadador {
 
     public void setGenere(String genere) {
         this.genere = genere;
+    }
+    public int compareTo(Nadador altre) {
+        return this.getNom().compareTo(altre.getNom());
     }
 
     @Override
