@@ -7,6 +7,8 @@ import es.uji.ei1027.clubesportiu.model.Classificacio;
 import es.uji.ei1027.clubesportiu.model.Nadador;
 import es.uji.ei1027.clubesportiu.services.ClassificacioService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.DataAccessException;
+import org.springframework.dao.DuplicateKeyException;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -41,14 +43,26 @@ public class ClassificacioController {
         return "classificacio/add";
     }
 
-    @RequestMapping(value = "/add", method = RequestMethod.POST)
-    public String processAddSubmit(@ModelAttribute("classificacio") Classificacio classificacio,
-                                   BindingResult bindingResult) {
+    @RequestMapping(value="/add", method=RequestMethod.POST)
+    public String processAddClassif(
+            @ModelAttribute("classificacio") Classificacio classificacio,
+            BindingResult bindingResult) {
         if (bindingResult.hasErrors())
             return "classificacio/add";
-        classificacioDao.addClassificacio(classificacio);
+        try {
+            classificacioDao.addClassificacio(classificacio);
+        } catch (DuplicateKeyException e) {
+            throw new ClubesportiuException(
+                    "Ja existeix una classificacio d'aquest nadador en "
+                            +classificacio.getNomProva(), "CPduplicada");
+        } catch (DataAccessException e) {
+            throw new ClubesportiuException(
+                    "Error en l'accés a la base de dades", "ErrorAccedintDades");
+        }
         return "redirect:list";
     }
+
+
 
     @RequestMapping(value = "/update/{nomNadador}/{nomProva}", method = RequestMethod.GET)
     public String editClassificacio(Model model, @PathVariable String nomNadador, @PathVariable String nomProva) {

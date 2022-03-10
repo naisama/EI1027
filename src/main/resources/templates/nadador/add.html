@@ -5,6 +5,8 @@
     <meta charset="UTF-8" />
     <link rel="stylesheet"
           href="https://maxcdn.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css"/>
+    <link rel="stylesheet" type="text/css" href="/css/natacio.css"
+          th:href="@{/css/natacio.css}"/>
 </head>
 <body>
 <h2>Nou nadador</h2>
@@ -14,7 +16,7 @@
         <tr>
             <td><label>Nom</label></td>
             <td><input type="text" th:field="*{nom}" maxlength="50" placeholder="Nom i cognoms" /></td>
-            <td th:if="${#fields.hasErrors('nom')}" th:errors="*{nom}"></td>
+            <td th:if="${#fields.hasErrors('nom')}" th:errors="*{nom}" class="error"></td>
         </tr>
         <tr>
             <td><label>Num. Federat</label></td>
@@ -26,18 +28,19 @@
         </tr>
         <tr>
             <td><label>Edat</label></td>
-            <td><input type="number" th:field="*{edat}" /></td>
-            <td th:if="${#fields.hasErrors('edat')}" th:errors="*{edat}"></td>
+            <td><input type="number" th:field="*{edat}"
+                       th:errorclass="needcorrection"/></td>
+            <td th:if="${#fields.hasErrors('edat')}" th:errors="*{edat}" class="error"></td>
         </tr>
         <tr>
             <td><label>Genere</label></td>
-            <td><select class="form_control" type="text" th:field="*{genere}">
+            <td><select class="form_control" type="text" th:field="*{genere}" >
                 <option value="No seleccionat">Selecciona el gènere</option>
-                <option value="Femeni">Femeni</option>
-                <option value="Masculi">Masculi</option>
+                <option value="Femení">Femení</option>
+                <option value="Masculí">Masculí</option>
             </select>
             </td>
-            <td th:if="${#fields.hasErrors('genere')}" th:errors="*{genere}"></td>
+            <td th:if="${#fields.hasErrors('genere')}" th:errors="*{genere}" class="error"></td>
         </tr>
         <tr>
             <td colspan="2"><input type="submit" value="Afegeix nadador" /></td>

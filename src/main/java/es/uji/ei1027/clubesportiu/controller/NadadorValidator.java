@@ -26,10 +26,10 @@ public class NadadorValidator implements Validator {
             errors.rejectValue("edat", "minim",
                     "Edat no pot ser menor que 16");
 
-        List<String> valors = Arrays.asList("Femeni", "Masculi");
+        List<String> valors = Arrays.asList("Femení", "Masculí");
         if (!valors.contains(nadador.getGenere()))
             errors.rejectValue("genere", "valor incorrecte",
-                    "Deu ser: Femeni o Masculi");
+                    "Deu ser: Femení o Masculí");
     }
 }
 

@@ -55,19 +55,19 @@ public class NadadorController {
     @RequestMapping(value="/update/{nom}", method = RequestMethod.GET)
     public String editNadador(Model model, @PathVariable String nom) {
         model.addAttribute("nadador", nadadorDao.getNadador(nom));
-        List<String> genderList = Arrays.asList("Femeni", "Masculi");
+        List<String> genderList = Arrays.asList("Femení", "Masculí");
         model.addAttribute("genderList", genderList);
         return "nadador/update";
     }
 
     @RequestMapping(value="/update", method = RequestMethod.POST)
-    public String processUpdateSubmit(
-            @ModelAttribute("nadador") Nadador nadador,
+    public String processUpdateSubmit(@ModelAttribute("nadador") Nadador nadador,
             BindingResult bindingResult) {
         NadadorValidator nadadorValidator = new NadadorValidator();
         nadadorValidator.validate(nadador, bindingResult);
-        if (bindingResult.hasErrors())
-            return "nadador/update";
+        if (bindingResult.hasErrors()) {
+            return "redirect:../nadador/update/" + nadador.getNom();
+        }
         nadadorDao.updateNadador(nadador);
         return "redirect:list";
     }

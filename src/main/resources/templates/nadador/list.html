@@ -4,6 +4,8 @@
     <title>Gestionar Nadadors</title>
     <meta charset="UTF-8" />
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" />
+    <link rel="stylesheet" type="text/css" href="/css/natacio.css"
+          th:href="@{/css/natacio.css}"/>
 </head>
 <body>
 <h1>Llista de Nadadors</h1>
@@ -26,7 +28,9 @@
     <tbody>
     <tr th:each="nadador: ${#lists.sort(nadadors)}">
         <td th:text="${nadador.numFederat}"></td>
-        <td th:text="${nadador.nom}"></td>
+        <td th:text="${nadador.nom}"
+            th:class="${#strings.equals(nadador.genere, 'Femení')} ?
+                font-weight-bold : font-italic"></td>
         <td th:text="${nadador.pais}"></td>
         <td th:text="${nadador.edat}"></td>
         <td th:text="${nadador.genere}"></td>

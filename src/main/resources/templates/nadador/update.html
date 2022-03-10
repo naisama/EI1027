@@ -5,6 +5,8 @@
     <meta charset="UTF-8" />
     <link rel="stylesheet"
           href="https://maxcdn.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css"/>
+    <link rel="stylesheet" type="text/css" href="/css/natacio.css"
+          th:href="@{/css/natacio.css}"/>
 </head>
 <body>
 <h2>Nadador</h2>
@@ -32,13 +34,13 @@
         <tr>
             <td><label>Genere</label></td>
             <td> <select class="form_control" type="text" th:field="*{genere}">
-                <!--option value="No seleccionat">Selecciona el gènere</option-->
+                <option value="No seleccionat">Selecciona el gènere</option>
                 <option th:each="gendervalue : ${genderList}"
                         th:value="${gendervalue}"
                         th:text="${gendervalue}"></option>
             </select>
             </td>
-            <td th:if="${#fields.hasErrors('genere')}" th:errors="*{genere}"></td>>
+            <td th:if="${#fields.hasErrors('genere')}" th:errors="*{genere}"></td>
         </tr>
         <tr>
             <td colspan="2"><input type="submit" value="Modificar nadador" /></td>
